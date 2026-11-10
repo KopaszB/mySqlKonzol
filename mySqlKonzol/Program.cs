@@ -27,6 +27,17 @@ namespace mySqlKonzol
                         Console.WriteLine($"{reader["nev"],-20} - {reader["eletkor"],-4} éves - {reader["osztaly"]}");
                     }
                     conn.Close();
+                    //helyett
+                    /*
+                     * using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Console.WriteLine($"{reader["nev"],-20} - {reader["eletkor"],-4} éves - {reader["osztaly"]}");
+                            }
+                        }
+                     */
+
                     //conn.Open();
                     //Adatok hozzáadása az adatbázishoz
                     //Console.WriteLine("Új diák felvétele:");
