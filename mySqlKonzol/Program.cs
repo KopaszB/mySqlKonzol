@@ -26,6 +26,46 @@ namespace mySqlKonzol
                     {
                         Console.WriteLine($"{reader["nev"],-20} - {reader["eletkor"],-4} éves - {reader["osztaly"]}");
                     }
+                    conn.Close();
+                    //conn.Open();
+                    //Adatok hozzáadása az adatbázishoz
+                    //Console.WriteLine("Új diák felvétele:");
+
+                    //Console.Write("Név: ");
+                    //string nev = Console.ReadLine();
+
+                    //Console.Write("Életkor: ");
+                    //int kor = int.Parse(Console.ReadLine());
+
+                    //Console.Write("Osztály: ");
+                    //string osztaly = Console.ReadLine();
+
+                    //string insertSql = $"INSERT INTO diakok(nev,eletkor,osztaly) VALUES (@nev,@kor,@osztaly);";
+
+                    ////sql injection támadás
+                    ////string insertSql = $"INSERT INTO diakok(nev,eletkor,osztaly) VALUES ('{nev}',{kor},''); DROP DATABASE diak_gyak;'--);";
+
+                    //MySqlCommand insertCmd = new MySqlCommand(insertSql, conn);
+                    //insertCmd.Parameters.AddWithValue("@nev", nev);
+                    //insertCmd.Parameters.AddWithValue("@kor", kor);
+                    //insertCmd.Parameters.AddWithValue("@osztaly", osztaly);
+                    //insertCmd.ExecuteNonQuery();
+                    //Console.WriteLine("Új diák hozzáadva!");
+                    //conn.Close();
+                    //Frissítjük az adatokat
+                    conn.Open();
+                    string updateSql = "UPDATE diakok SET eletkor=30 WHERE nev = 'Kiss Anna'";
+                    MySqlCommand updateCmd = new MySqlCommand(updateSql, conn);
+                    updateCmd.ExecuteNonQuery();
+                    Console.WriteLine("Adatok frissítve!");
+                    conn.Close();
+                    //Adatok törlése
+                    conn.Open();
+                    string deleteSql = "DELETE FROM diakok WHERE nev = 'Kiss Anna'";
+                    MySqlCommand deleteCmd = new MySqlCommand(deleteSql, conn);
+                    deleteCmd.ExecuteNonQuery();
+                    Console.WriteLine("Adatok törölve!");
+                    conn.Close();
 
                 }
                 catch (Exception e)
